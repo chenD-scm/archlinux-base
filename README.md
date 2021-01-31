@@ -1,2 +1,2 @@
-# archlinux-base
+# archlinux-basic
 dockerfile
