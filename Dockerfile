@@ -39,6 +39,7 @@ RUN pacman -Qqn | pacman -S --noconfirm  -
 # RUN curl -LO https://repo.archlinuxcn.org/x86_64/$patched_glibc
 # RUN bsdtar -C / -xvf $patched_glibc
 
+
 # install packages
 USER user
 RUN yay -Sy --noconfirm chendsystem-basic
