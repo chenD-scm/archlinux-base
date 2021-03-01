@@ -2,12 +2,12 @@ FROM chendscm/archlinux-yay
 
 # setup
 USER root
-COPY pacman.conf /opt/chend/basic/pacman.conf
+COPY pacman.conf /opt/chendsystem/basic/pacman.conf
 
 # setup pacman to get a full image
 RUN sed -i 's/NoExtract/#NoExtract/g' /etc/pacman.conf
 RUN sed -i 's/HoldPkg/#HoldPkg/g' /etc/pacman.conf
-RUN cat /opt/chend/basic/pacman.conf >> /etc/pacman.conf
+RUN cat /opt/chendsystem/basic/pacman.conf >> /etc/pacman.conf
 
 # setup keyring
 RUN rm -rf /etc/pacman.d/gnupg
@@ -41,5 +41,5 @@ RUN pacman -Qqn | pacman -S --noconfirm  -
 
 # install packages
 USER user
-RUN yay -Sy --noconfirm chend-basic
+RUN yay -Sy --noconfirm chendsystem-basic
 
