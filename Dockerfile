@@ -39,7 +39,6 @@ ENV patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst
 RUN curl -LO https://repo.archlinuxcn.org/x86_64/$patched_glibc
 RUN bsdtar -C / -xvf $patched_glibc
 
-
 # install packages
 USER user
 RUN yay -Sy --noconfirm chendsystem-basic
