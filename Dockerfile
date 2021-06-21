@@ -27,3 +27,17 @@ RUN pacman -Qqn | pacman -S --noconfirm  -
 USER user
 RUN yay -Sy --noconfirm chendsystem-basic
 
+# ssh key
+USER root
+RUN mkdir /root/.ssh \
+ && touch /root/.ssh/known_hosts \
+ && ssh-keyscan github.com >> /root/.ssh/known_hosts
+    
+# git
+RUN mkdir -p /git/basic
+RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa \
+ git clone git@github.com:cisco/ChezScheme /git/basic/ChezScheme
+
+# compile
+RUN cd /git/basic/ChezScheme/; ./configure; make install
+RUN chmod -R 777 /git
