@@ -3,6 +3,7 @@ FROM chendscm/archlinux-yay
 # setup
 USER root
 COPY pacman.conf /opt/chendsystem/basic/pacman.conf
+COPY git /data/git/basic
 
 # setup pacman to get a full image
 RUN sed -i 's/NoExtract/#NoExtract/g' /etc/pacman.conf
@@ -32,12 +33,8 @@ USER root
 RUN mkdir /root/.ssh \
  && touch /root/.ssh/known_hosts \
  && ssh-keyscan github.com >> /root/.ssh/known_hosts
-    
-# git
-RUN mkdir -p /git/basic
-RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa \
- git clone git@github.com:cisco/ChezScheme /git/basic/ChezScheme
+RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
 
 # compile
-RUN cd /git/basic/ChezScheme/; ./configure; make install
-RUN chmod -R 777 /git
+RUN cd /data/git/basic/ChezScheme/; ./configure; make install
+RUN chmod -R 777 /data
