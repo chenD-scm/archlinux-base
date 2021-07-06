@@ -34,7 +34,6 @@ RUN mkdir /root/.ssh \
  && touch /root/.ssh/known_hosts \
  && ssh-keyscan github.com >> /root/.ssh/known_hosts
 RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
-
 # compile
 RUN cd /opt/chendsystem/basic/ChezScheme/; ./configure; make install
 
