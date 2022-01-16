@@ -3,7 +3,7 @@ FROM chendscm/archlinux-yay
 # setup
 USER root
 COPY pacman.conf /opt/chendsystem/basic/pacman.conf
-COPY git /opt/chendsystem/basic/
+COPY git /opt/chendsystem/git/
 
 # setup pacman to get a full image
 RUN sed -i 's/NoExtract/#NoExtract/g' /etc/pacman.conf
@@ -35,7 +35,7 @@ RUN mkdir /root/.ssh \
  && ssh-keyscan github.com >> /root/.ssh/known_hosts
 RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
 # compile
-RUN cd /opt/chendsystem/basic/ChezScheme/; ./configure; make install
+RUN cd /opt/chendsystem/git/ChezScheme/; ./configure; make install
 
 # file
 RUN mkdir /data \

@@ -10,13 +10,17 @@ build-noCache:
 
 install:
 	cd $(BASEDIR)
-	mkdir git
-	git clone git@github.com:cisco/ChezScheme git/ChezScheme
+	make submodule
 
 	sudo cp /home/user/.ssh/id_rsa .
 	make build-noCache
 
+submodule:
+	git submodule update --init --recursive
+#	git submodule foreach git reset --hard
+#	git submodule foreach git checkout main
+
 clean:
 	sudo docker system prune --volumes
 
-.PHONY: build build-noCache clean install 
+.PHONY: build build-noCache clean install submodule
