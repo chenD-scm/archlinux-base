@@ -3,7 +3,7 @@ FROM chendscm/archlinux-yay
 # setup
 USER root
 COPY pacman.conf /opt/chendsystem/basic/pacman.conf
-COPY git /opt/chendsystem/git/
+COPY git /opt/chendsystem/git
 
 # setup pacman to get a full image
 RUN sed -i 's/NoExtract/#NoExtract/g' /etc/pacman.conf
