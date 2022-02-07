@@ -36,6 +36,8 @@ RUN mkdir /root/.ssh \
 RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
 # compile
 RUN cd /opt/chendsystem/git/ChezScheme/; ./configure; make install
+# eaf dependencies
+# RUN cd /opt/chendsystem/git/emacs-application-framework; chmod +x ./install-eaf.py; ./install-eaf.py --install-all-apps
 
 # file
 RUN mkdir /data \
