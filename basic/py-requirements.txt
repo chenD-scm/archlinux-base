@@ -1,0 +1,10 @@
+numpy
+pandas
+openpyxl
+scipy
+
+docker-compose
+
+# emacs-eaf
+pymupdf
+

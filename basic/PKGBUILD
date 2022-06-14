@@ -1,0 +1,146 @@
+pkgname=chendsystem-basic
+pkgver=1
+pkgrel=1
+arch=(any)
+install=$pkgname.install
+depends=(
+	# shell
+	zsh
+	fish
+	xonsh
+	reptyr
+	tmux
+	screen
+	mosh
+	openssh
+	bash-completion
+
+	# useful command line tools
+	jq
+	screenfetch
+	tree
+	bc
+	pv
+	dos2unix
+	cloc
+	#emacs # emacs28.1 get error in lispy eval python (2022.4.10)
+	vim
+	git
+	git-lfs
+	unzip
+	progress-git
+	strace
+
+	# modern fancy commands
+	nerd-fonts-complete
+	ripgrep
+	fzf
+	fd
+	bat
+	exa
+	hexyl
+	hyperfine
+	lsd
+	broot
+
+	# network related
+	dhcpcd
+	wireguard-tools
+	iwd
+	aria2
+	wget
+	httpie
+	darkhttpd
+	ethtool
+	tcpdump
+	nmap
+	bind-tools
+	traceroute
+	sshfs
+	nfs-utils
+	openbsd-netcat
+	httpie
+	gping
+
+	# system
+	linux-headers
+	lsof
+	iotop
+	htop
+	netdata
+	docker
+	efibootmgr
+	grub
+	grub-btrfs
+	fkill
+	refind
+	mkinitcpio-docker-hooks
+	intel-ucode
+	amd-ucode
+	acpi
+	ranger
+        # sound
+	alsa-utils
+        alsa-firmware # require for certain sound cards
+        sof-firmware # require for few newerlaptop models
+        alsa-ucm-conf # require for few newerlaptop models
+
+        # bluetooth
+        bluez
+        bluez-utils
+
+	# compression
+	zip
+	pigz
+	unrar
+
+	# development
+	bazel
+	clang
+	nodejs
+	npm
+	go
+	go-tools
+	ninja
+	python
+	python-pip
+	python-pyaml
+        jupyter-notebook        
+	cmake
+	openmp
+	rr
+	fmt
+	boost
+
+	
+	# sync
+	syncthing
+        onedrive
+
+	# tools
+	w3m
+	stardict
+	sdcv
+	sshuttle
+)
+
+source=(basic.conf dockersh gen_boot locale.gen py-requirements.txt)
+md5sums=('b3912821462b31bc2faa3ff2c10d796b'
+         'bf51807986aa7487a08eb68cb3e3499a'
+         '63eea87d913d98738c3a2730e7a0319e'
+         '32a4472fe56ceb6939bc3af6fc9270eb'
+         '8e8799f7d6d2dfb8734e1681f88f7b7d')
+
+package() {
+	cd ${pkgdir}
+	mkdir -p "${pkgdir}/etc/sysctl.d/"
+	mkdir -p "${pkgdir}/usr/bin/"
+	mkdir -p "${pkgdir}/opt/chendsystem/basic/etc/"
+	mkdir -p "${pkgdir}/opt/chendsystem/code/python/"
+
+	install -m 644 "${srcdir}/basic.conf" "${pkgdir}/etc/sysctl.d/"
+	install -m 755 "${srcdir}/dockersh" "${pkgdir}/usr/bin/"
+	install -m 755 "${srcdir}/gen_boot" "${pkgdir}/usr/bin/"
+	install -m 644 "${srcdir}/locale.gen" "${pkgdir}/opt/chendsystem/basic/etc/"
+	install -m 755 "${srcdir}/py-requirements.txt" "${pkgdir}/opt/chendsystem/code/python/"
+}

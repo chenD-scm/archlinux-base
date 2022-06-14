@@ -2,13 +2,10 @@ FROM chendscm/archlinux-yay
 
 # setup
 USER root
-COPY pacman.conf /opt/chendsystem/basic/pacman.conf
-COPY git /opt/chendsystem/git
 
 # setup pacman to get a full image
 RUN sed -i 's/NoExtract/#NoExtract/g' /etc/pacman.conf
 RUN sed -i 's/HoldPkg/#HoldPkg/g' /etc/pacman.conf
-RUN cat /opt/chendsystem/basic/pacman.conf >> /etc/pacman.conf
 
 # setup keyring
 RUN rm -rf /etc/pacman.d/gnupg
@@ -25,13 +22,19 @@ RUN pacman -Sy --noconfirm base base-devel linux linux-firmware
 RUN pacman -Qqn | pacman -S --noconfirm  -
 
 # install packages
+COPY basic /usr/local/share/packages/basic
+COPY basic /tmp/basic
 USER user
-RUN yay -Sy --noconfirm chendsystem-basic
+RUN sudo chown -R user:user /tmp/basic
+WORKDIR /tmp/basic
+RUN makepkg -p ./PKGBUILD --printsrcinfo | awk '{$1=$1};1' | grep -oP '(?<=^depends = ).*' | xargs yay -S --noconfirm
+RUN makepkg -i --noconfirm
 # Tmp install emacs27 replace emacs28.1
 RUN yay -U --noconfirm https://archive.archlinux.org/packages/e/emacs/emacs-27.2-2-x86_64.pkg.tar.zst
 
 # ssh key
 USER root
+COPY git /opt/chendsystem/git
 RUN mkdir /root/.ssh \
  && touch /root/.ssh/known_hosts \
  && ssh-keyscan github.com >> /root/.ssh/known_hosts

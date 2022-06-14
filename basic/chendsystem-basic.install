@@ -1,0 +1,19 @@
+post_install() {
+    echo ==> Setting up system chendsystem/basic
+
+    # set up locale
+    cp /opt/chendsystem/basic/etc/locale.gen /etc/locale.gen
+    locale-gen
+
+    # make initramfs bootable
+    sed -i 's/archlinux\/base/chendscm\/basic/g' /etc/docker-btrfs.json
+    perl -i -p -e 's/(?<=^HOOKS=\()(.*)(?=\))/$1 docker-btrfs/g' /etc/mkinitcpio.conf
+
+    # setting up services
+    systemctl enable sshd docker netdata iwd iptables dhcpcd bluetooth
+    sed -i 's/.*PasswordAuthentication .*/PasswordAuthentication no/g' /etc/ssh/sshd_config
+    sed -i 's/#NAutoVTs/NAutoVTs/g' /etc/systemd/logind.conf
+
+    # python packages
+    pip3 install -r /opt/chendsystem/code/python/py-requirements.txt
+}
