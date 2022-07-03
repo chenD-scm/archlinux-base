@@ -89,6 +89,8 @@ depends=(
         bluez
         bluez-utils
         pulseaudio-bluetooth
+        pulseaudio-alsa
+        ncpamixer
 
 	# compression
 	zip
