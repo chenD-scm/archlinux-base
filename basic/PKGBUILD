@@ -88,6 +88,7 @@ depends=(
         # bluetooth
         bluez
         bluez-utils
+        pulseaudio-bluetooth
 
 	# compression
 	zip
