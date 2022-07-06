@@ -29,8 +29,6 @@ RUN sudo chown -R user:user /tmp/basic
 WORKDIR /tmp/basic
 RUN makepkg -p ./PKGBUILD --printsrcinfo | awk '{$1=$1};1' | grep -oP '(?<=^depends = ).*' | xargs yay -S --noconfirm
 RUN makepkg -i --noconfirm
-# Tmp install emacs27 replace emacs28.1
-RUN yay -U --noconfirm https://archive.archlinux.org/packages/e/emacs/emacs-27.2-2-x86_64.pkg.tar.zst
 
 # ssh key
 USER root
