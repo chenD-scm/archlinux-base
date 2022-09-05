@@ -41,5 +41,6 @@ RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
 RUN cd /opt/chendsystem/git/ChezScheme/; ./configure; make install
 
 # file
-RUN mkdir /data \
- && chmod -R 777 /data
+RUN mkdir /home/user/data /home/user/git \
+ && chmod -R 777 /home/user/data /home/user/git
+
