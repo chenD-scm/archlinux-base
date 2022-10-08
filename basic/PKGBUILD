@@ -23,7 +23,7 @@ depends=(
 	pv
 	dos2unix
 	cloc
-	#emacs # emacs28.1 get error in lispy eval python (2022.4.10)
+	emacs 
 	vim
 	git
 	git-lfs
@@ -115,7 +115,6 @@ depends=(
 	fmt
 	boost
 
-	
 	# sync
 	syncthing
         onedrive
