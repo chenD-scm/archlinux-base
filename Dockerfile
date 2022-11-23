@@ -33,8 +33,7 @@ RUN makepkg -i --noconfirm
 # ssh key
 USER root
 COPY git /opt/chendsystem/git
-RUN mkdir /root/.ssh \
- && touch /root/.ssh/known_hosts \
+RUN touch /root/.ssh/known_hosts \
  && ssh-keyscan github.com >> /root/.ssh/known_hosts
 RUN --mount=type=secret,id=ssh_id,target=/root/.ssh/id_rsa
 # compile
