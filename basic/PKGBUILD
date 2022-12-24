@@ -124,6 +124,7 @@ depends=(
 	stardict
 	sdcv
 	sshuttle
+        tigervnc
 )
 
 source=(basic.conf dockersh gen_boot locale.gen py-requirements.txt)
