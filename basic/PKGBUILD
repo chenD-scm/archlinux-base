@@ -69,6 +69,7 @@ depends=(
 	htop
 	netdata
 	docker
+        docker-buildx
 	efibootmgr
 	grub
 	grub-btrfs
