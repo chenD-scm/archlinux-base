@@ -28,8 +28,14 @@ depends=(
 	git
 	git-lfs
 	unzip
-	progress-git
+	progress
 	strace
+        tldr
+        git-delta
+        arcanist-git
+        p7zip
+        expect
+        difftastic
 
 	# modern fancy commands
 	nerd-fonts-complete
