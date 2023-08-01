@@ -90,7 +90,7 @@ depends=(
         # bluetooth
         bluez
         bluez-utils
-        ncpamixer
+        #ncpamixer
 
         # audio
 	alsa-utils
@@ -132,7 +132,6 @@ depends=(
 
 	# sync
 	syncthing
-        onedrive
 
 	# tools
 	w3m
