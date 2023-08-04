@@ -86,6 +86,7 @@ depends=(
 	amd-ucode
 	acpi
 	ranger
+        brightnessctl
 
         # bluetooth
         bluez
