@@ -3,8 +3,15 @@ pandas
 openpyxl
 scipy
 
-docker-compose
-
-# emacs-eaf
+# emacs-eaf deps
+epc
+sexpdata
+tld
+lxml
 pymupdf
+# emacs-lsp-bridge deps
+orjson
+sexpdata
+six
+paramiko
 

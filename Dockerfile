@@ -29,6 +29,8 @@ RUN sudo chown -R user:user /tmp/basic
 WORKDIR /tmp/basic
 RUN makepkg -p ./PKGBUILD --printsrcinfo | awk '{$1=$1};1' | grep -oP '(?<=^depends = ).*' | xargs yay -S --noconfirm
 RUN makepkg -i --noconfirm
+#install python packages
+RUN pip3 install --user --break-system-packages -r /opt/chendsystem/basic/python/py-requirements.txt
 
 # ssh key
 USER root
